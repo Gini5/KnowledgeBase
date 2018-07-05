@@ -23,7 +23,6 @@ class Solution:
         self.visited.add(num)
         return num
 
-        
         # Your Solution object will be instantiated and called as such:
         # obj = Solution(N, blacklist)
         # param_1 = obj.pick()
