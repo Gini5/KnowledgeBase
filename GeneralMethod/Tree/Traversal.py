@@ -42,3 +42,5 @@ class Solution:
                 root = root.left
             if not stack: return res
             root = stack.pop()
+            res.append(root.val)
+            root = root.right
