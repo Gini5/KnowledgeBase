@@ -47,15 +47,38 @@ class Solution:
     def postorderTraversal(self,root):
         s1,s2 = [root], []
         res = []
-
         while s1:
             node = s1.pop()
             s2.append(node)
             if node.left: s1.append(node.left)
             if node.right: s1.append(node.right)
-
         while s2:
             node = s2.pop()
             res.append(node.val)
+        return res
 
+    def levelorderTraversal(self,root):
+        stack = [root]
+        res = []
+        while root and stack:
+            res.append([n.val for n in stack])
+            stack = [kid for n in stack for kid in (n.left, n.right) if kid]
+        return res
+
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        stack = [root]
+        res, tmp, child = [], [], []
+        while root and stack:
+            node = stack.pop(0)
+            tmp.append(node.val)
+            if node.left: child.append(node.left)
+            if node.right: child.append(node.right)
+            if not stack:
+                res.append(tmp)
+                stack = child
+                tmp, child = [], []
         return res
