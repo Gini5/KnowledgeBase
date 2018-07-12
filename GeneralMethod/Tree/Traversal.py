@@ -23,24 +23,39 @@ class Solution:
         :type root: TreeNode
         :rtype: List[int]
         """
-        stack = []
-        res = []
-        while True:
+        res, stack = [], []
+        while root or stack:
             while root:
                 res.append(root.val)
                 stack.append(root)
                 root = root.left
-            if not stack: return res
             root = stack.pop()
             root = root.right
+        return res
 
     def inorderTraversal(self,root):
         res, stack = [], []
-        while True:
+        while root or stack:
             while root:
                 stack.append(root)
                 root = root.left
-            if not stack: return res
             root = stack.pop()
             res.append(root.val)
             root = root.right
+        return res
+
+    def postorderTraversal(self,root):
+        s1,s2 = [root], []
+        res = []
+
+        while s1:
+            node = s1.pop()
+            s2.append(node)
+            if node.left: s1.append(node.left)
+            if node.right: s1.append(node.right)
+
+        while s2:
+            node = s2.pop()
+            res.append(node.val)
+
+        return res
