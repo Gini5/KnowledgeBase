@@ -7,6 +7,7 @@ def quicksort(a):
     return quicksort(left) + [key] + quicksort(right)
 
 def mergesort(a):
+    # time: O(nlogn)  space: O(n) = O（n)+O(n/2)+O(n/4)+...
     n = len(a)
     if n < 2: return a
     mid = n//2
@@ -38,10 +39,17 @@ def insertsort(a):
         a[j+1] = tmp
     return a
 
-def shellsort(a):
+def bubblesort(a):
+    # time: O(n^2)  space: O(1)
+    n = len(a)
+    for i in range(n):
+        for j in range(0,n-i-1):
+            if a[j]>a[j+1]:
+                a[j],a[j+1] = a[j+1],a[j]
+    return a
 
 
-print(mergesort([1,2,1]))
-print(mergesort([1,2]))
-print(mergesort([]))
-print(mergesort([4,3,5,2,1]))
+print(bubblesort([1,2,1]))
+print(bubblesort([1,2]))
+print(bubblesort([]))
+print(bubblesort([4,3,5,2,1]))
