@@ -48,8 +48,29 @@ def bubblesort(a):
                 a[j],a[j+1] = a[j+1],a[j]
     return a
 
+def selectSort(relist):
+    len_ = len(relist)
+    for i in range(len_):
+        min_index = i
+        for j in range(i+1,len_):  # 这个循环会找到值比第i个索引所代表值小的索引
+            if relist[j] < relist[min_index]:
+                min_index = j
+        relist[i] ,relist[min_index] = relist[min_index], relist[i]  # 互换两个索引位置
+    return relist
 
-print(bubblesort([1,2,1]))
-print(bubblesort([1,2]))
-print(bubblesort([]))
-print(bubblesort([4,3,5,2,1]))
+def shell_sort(relist):
+    n = len(relist)
+    gap = n/2  # 初始步长
+    while gap > 0:
+        for i in range(gap, n):
+            temp = relist[i]   # 每个步长进行插入排序
+            j = i
+            # 插入排序
+            while j >= gap and relist[j - gap] > temp:
+                relist[j] = relist[j - gap]
+                j -= gap
+            relist[j] = temp
+
+        gap = gap/2  # 得到新的步长
+
+    return relist

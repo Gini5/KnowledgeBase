@@ -33,24 +33,6 @@ class Solution:
             root = root.right
         return res
 
-    def preorderTraversal2(self, root):
-            """
-            :type root: TreeNode
-            :rtype: List[int]
-            """
-            if not root:
-                return []
-            stack = [root]
-            result = []
-            while stack:
-                current = stack.pop()
-                result.append(current.val)
-                if current.right:
-                    stack.append(current.right)
-                if current.left:
-                    stack.append(current.left)
-            return result
-
     def inorderTraversal(self,root):
         res, stack = [], []
         while root or stack:
