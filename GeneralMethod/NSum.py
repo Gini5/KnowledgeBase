@@ -41,6 +41,8 @@ def nsum(arr, target):
                     high -= 1
         elif k > 2:
             for i in range(len(nums)-k+1):
+                if target < nums[i] * k or target > nums[-1] * k:  # optimize redundant calculation
+                    break
                 if i == 0 or i>0 and nums[i-1] != nums[i]:
                     ksum(nums[i+1:], target-nums[i], k-1, result, value+[nums[i]])
 
