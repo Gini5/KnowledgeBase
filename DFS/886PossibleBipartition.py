@@ -1,3 +1,4 @@
+import collections
 class Solution:
     def possibleBipartition(self, N, dislikes):
         """
