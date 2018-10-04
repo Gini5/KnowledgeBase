@@ -14,13 +14,15 @@ class Solution:
         for 2, it's [2,4]
         for 4, it's [4]
         so the sum is sum([n*(i-left_boundary)*(right_boundary-i) for n in A]
+        left boundary is cur-stack[-1], right boundary is i-cur
         """
         s = 0
         stack = []
         A = [float('-inf')] + A + [float('-inf')]
         for i, n in enumerate(A):
             while stack and n < A[stack[-1]]:
+        # if stack's top element is bigger than n, top is not left boundary for n while top reaches its right boundary
                 cur = stack.pop()
-                s += A[cur]*(cur-stack[-1])*(i-cur)
+                s += A[cur]*(cur-stack[-1])*(i-cur) # calculate for top element since it reaches its right boundary
             stack.append(i)
         return s%(10**9+7)
