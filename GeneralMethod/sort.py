@@ -1,10 +1,26 @@
-def quicksort(a):
+def quicksortrecurse(a):
     # time: O(nlogn)~O(n^2)  space: O(nlogn)
     if not a: return []
     key = a[0]
     left = [x for x in a[1:] if x<key]
     right = [x for x in a[1:] if x>=key]
-    return quicksort(left) + [key] + quicksort(right)
+    return quicksortrecurse(left) + [key] + quicksortrecurse(right)
+
+def quicksort(a,low,high):
+    if low>=high: return
+    l, h = low, high
+    key = a[low]
+    while l<h:
+        while l<h and a[h]>=key:
+            h -= 1
+        a[l] = a[h]
+        while l<h and a[l]<=key:
+            l += 1
+        a[h] = a[l]
+    a[l] = key      #at this point: l == h
+    quicksort(a,low,l-1)
+    quicksort(a,h+1,high)
+    return a
 
 def mergesort(a):
     # time: O(nlogn)  space: O(n) = O（n)+O(n/2)+O(n/4)+...
