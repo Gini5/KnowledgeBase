@@ -1,5 +1,5 @@
 def quicksortrecurse(a):
-    # time: O(nlogn)~O(n^2)  space: O(nlogn)
+    # time: O(nlogn)~O(n^2)  space: O(nlogn)    unstable[5,3,3] last 3 will exchange with 5
     if not a: return []
     key = a[0]
     left = [x for x in a[1:] if x<key]
@@ -23,7 +23,7 @@ def quicksort(a,low,high):
     return a
 
 def mergesort(a):
-    # time: O(nlogn)  space: O(n) = O（n)+O(n/2)+O(n/4)+...
+    # time: O(nlogn)  space: O(n) = O（n)+O(n/2)+O(n/4)+...   stable
     n = len(a)
     if n < 2: return a
     mid = n//2
