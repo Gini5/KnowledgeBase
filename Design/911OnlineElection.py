@@ -22,19 +22,15 @@ class TopVotedCandidate:
         :rtype: int
         """
         # return self.winners[bisect.bisect(self.times, t) - 1]
-        l,r = 0, len(self.times)-1
-        while l < r:
-            mid = (r + l) // 2
-            if self.times[mid] == t:
-                break
-            elif self.times[mid] < t:
+
+        l,r = 0, len(self.times)
+        while l<r:
+            mid = (l+r)//2
+            if self.times[mid] <= t:
                 l = mid + 1
-                mid = l
             else:
-                r = mid - 1
-                mid = r
-        if mid > 0 and self.times[mid] > t: mid -= 1
-        return self.winners[mid]
+                r = mid
+        return self.winners[l-1]
 
 
 
