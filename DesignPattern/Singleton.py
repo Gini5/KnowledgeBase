@@ -13,7 +13,7 @@
 #         if not cls.__instance:
 #             cls.__instance = Singleton()
 #         return cls.__instance
-
+from mysingleton import mysingleton
 class Singleton(object):
     _singletons = {}
     def __new__(cls):
@@ -26,4 +26,11 @@ print(id(a))
 b = Singleton()
 print(id(b))
 c = Singleton()
+print(id(b))
+
+a = mysingleton
+print(id(a))
+b = mysingleton
+print(id(b))
+c = mysingleton
 print(id(b))
