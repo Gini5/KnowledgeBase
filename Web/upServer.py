@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import Response, request
 from functools import wraps
+import datetime
+# from OpenSSL
 
 app = Flask(__name__)
 
@@ -23,8 +25,11 @@ def requireAuth(f):
 # @requireAuth
 def main():
     r = Response("hello")
-    r.set_cookie("_mycookie", "myvalue")
+    # r.set_cookie("_mycookie", "myvalue")    #session cookie without expires/max-age
+    # r.set_cookie("_withMaxAge", "20s",20)  #persistent cookie with max-age
+    # r.set_cookie("_withExpires", "3days",None, datetime.datetime.now()+datetime.timedelta(days=3)) #persistent cookie with expires
     return r
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
+    # app.run(host='0.0.0.0', port=3000, ssl_context="adhoc")   # enable https
