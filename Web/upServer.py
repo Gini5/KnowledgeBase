@@ -20,9 +20,11 @@ def requireAuth(f):
     return decorated
 
 @app.route('/')
-@requireAuth
+# @requireAuth
 def main():
-    return "successful"
+    r = Response("hello")
+    r.set_cookie("_mycookie", "myvalue")
+    return r
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
