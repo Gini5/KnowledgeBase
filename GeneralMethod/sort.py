@@ -44,7 +44,7 @@ def mergesort(a):
     return res
 
 def insertsort(a):
-    # time: O(n)~O(n^2) space: O(1)
+    # time: O(n)~O(n^2) space: O(1)  stable    insert element if it's smaller than elements before it
     if not a: return a
     for i in range(1,len(a)):
         j = i-1
@@ -56,7 +56,7 @@ def insertsort(a):
     return a
 
 def bubblesort(a):
-    # time: O(n^2)  space: O(1)
+    # time: O(n^2)  space: O(1)  stable
     n = len(a)
     for i in range(n):
         for j in range(0,n-i-1):
