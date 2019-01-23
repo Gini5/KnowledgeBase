@@ -99,3 +99,23 @@ class Solution:
             else:
                 break
         return res
+
+    def combinationSum2(self, candidates, target):
+        """
+        each number can only be used once, solution doesn't contain duplicate
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        candidates.sort()
+        res = []
+        for i,n in enumerate(candidates):
+                if target == n:
+                    res.append([n])
+                    break
+                elif target > n:
+                    for sub in self.combinationSum2(candidates[:i],target-n):
+                        res.append([n]+sub)
+                else:
+                    break
+        return res
