@@ -11,12 +11,67 @@ class Solution:
                 res.append([n]+sub)
         return res
 
-    def subsets2(self,nums):
-        res = []
-        self.dfs(nums, 0, [], res)
+    def subsetsWithDup(self,nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        Given a set of duplicate integers, nums, return all possible subsets (the power set).
+        """
+        nums.sort()
+        res = [[]]
+        for i, n in enumerate(nums):
+            if i == 0 or nums[i] != nums[i - 1]:
+                for sub in self.subsetsWithDup(nums[i + 1:]):
+                    res.append([n] + sub)
         return res
 
-    def dfs(self, nums, index, path, res):
-        res.append(path)
-        for i in range(index, len(nums)):
-            self.dfs(nums, i + 1, path + [nums[i]], res)
+    def subsets2(self,nums):
+        res = []
+
+        def dfs(nums, index, path):
+            res.append(path)
+            for i in range(index, len(nums)):
+                dfs(nums, i + 1, path + [nums[i]])
+
+        dfs(nums, 0, [])
+        return res
+
+    def subsetsWithDup2(self,nums):
+        res = []
+        nums.sort()
+        def dfs(nums,index,path):
+            res.append(path)
+            for i in range(index, len(nums)):
+                if i == index or nums[i] != nums[i-1]:
+                    dfs(nums, i+1, path+[nums[i]])
+
+        dfs(nums, 0, [])
+        return res
+
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        return all permutation for distinct array
+        """
+        if not nums: return [[]]
+        res = []
+        for i, n in enumerate(nums):
+            for sub in self.permute(nums[:i] + nums[i + 1:]):
+                res.append([n] + sub)
+        return res
+
+    def permuteWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        array may contain duplicates
+        """
+        if not nums: return [[]]
+        res = []
+        nums.sort()
+        for i, n in enumerate(nums):
+            if i == 0 or nums[i] != nums[i - 1]:
+                for sub in self.permute(nums[:i] + nums[i + 1:]):
+                    res.append([n] + sub)
+        return res
