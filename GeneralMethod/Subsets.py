@@ -75,3 +75,27 @@ class Solution:
                 for sub in self.permute(nums[:i] + nums[i + 1:]):
                     res.append([n] + sub)
         return res
+
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        candidates = [2,3,5], target = 8, A solution set is:
+        [
+          [2,2,2,2],
+          [2,3,3],
+          [3,5]
+        ]
+        """
+        res = []
+        candidates.sort()
+        for i, n in enumerate(candidates):
+            if n < target:
+                for sub in self.combinationSum(candidates[:i + 1], target - n):
+                    res.append([n] + sub)
+            elif n == target:
+                res.append([n])
+            else:
+                break
+        return res
