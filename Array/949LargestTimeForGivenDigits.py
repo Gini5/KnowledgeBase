@@ -4,12 +4,20 @@ class Solution:
         :type A: List[int]
         :rtype: str
         """
-        res = ""
-        A.sort()
-        for i in range(4):
-            for j in range(i, 4):
-                if i == 0:
-                    if A[j] > A[i] and A[j] < 3: A[i], A[j] = A[j], A[i]
-                if i == 1:
-                    if A[0] == 0 or A[0] == 1: A[i], A[3] = A[3], A[i]
-                    else:   #A[0] is 2
+
+        def iter(a):
+            if len(a) > 0:
+                res = []
+                for i, e in enumerate(a):
+                    res += [[e] + sub for sub in iter(a[:i] + a[i + 1:])]
+                return res
+            else:
+                return [[]]
+
+        res = ["0", "0"]
+        for item in iter(A):
+            h = str(item[0]) + str(item[1])
+            m = str(item[2]) + str(item[3])
+            if h < "24" and m < "60":
+                if h > res[0] or h >= res[0] and m > res[1]: res = [h, m]
+        return res[0] + ":" + res[1] if res != ["0", "0"] else ""
