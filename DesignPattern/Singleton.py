@@ -13,24 +13,16 @@
 #         if not cls.__instance:
 #             cls.__instance = Singleton()
 #         return cls.__instance
-from mysingleton import mysingleton
+
 class Singleton(object):
-    _singletons = {}
-    def __new__(cls):
-        if not cls._singletons.keys():            #若还没有任何实例
-            cls._singletons[cls] = object.__new__(cls)  #生成一个实例
-        return cls._singletons[cls]
+      def __new__(cls, *args, **kwargs):
+          if not hasattr(Singleton, "_instance"): # 反射
+              Singleton._instance = object.__new__(cls)
+          return Singleton._instance
 
 a = Singleton()
 print(id(a))
 b = Singleton()
 print(id(b))
 c = Singleton()
-print(id(b))
-
-a = mysingleton
-print(id(a))
-b = mysingleton
-print(id(b))
-c = mysingleton
 print(id(b))
