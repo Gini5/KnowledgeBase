@@ -46,6 +46,28 @@ class Solution:
 
         return len(stones) - len({find(x) for x in UF})
 
+    def removeStoneUF2(self, stones):
+        union = {}
+
+        def findRoot(i):
+            if i in union:
+                while union[i] != i:
+                    i = union[i]
+            else:
+                union[i] = i
+            return i
+
+        def addUnion(i, j):
+            union[findRoot(j)] = findRoot(i)
+
+        for i, j in stones:
+            addUnion(i, j + 10000)
+        cnt = 0
+        for i, p in union.items():
+            if i == p:
+                cnt += 1
+        return len(stones) - cnt
+
 t = Solution()
 # print(t.removeStoneUF([[0,0],[0,2],[1,1],[2,0],[2,2]]))
 print(t.removeStoneUF([[0,1],[1,0],[1,2],[2,1],[2,2]]))
