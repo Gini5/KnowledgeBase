@@ -9,27 +9,25 @@ class Solution:
             rows[i].add(j)
             cols[j].add(i)
 
-        def dfsRow(i):
-            seenR.add(i)
-            for j in rows[i]:
-                if j not in seenC:
-                    dfsCol(j)
+        def dfs(i,j):
+            visited.add((i,j))
+            for c in rows[i]:
+                if (i,c) not in visited:
+                    dfs(i,c)
 
-        def dfsCol(j):
-            seenC.add(j)
-            for i in cols[j]:
-                if i not in seenR:
-                    dfsRow(i)
+            for r in cols[j]:
+                if (r,j) not in visited:
+                    dfs(r,j)
 
-        seenR, seenC = set(), set()
+        visited = set()
         islands = 0
         for i, j in stones:
-            if i not in seenR:
+            if (i,j) not in visited:
                 islands += 1
-                dfsRow(i)
-                dfsCol(j)
+                dfs(i,j)
 
         return len(stones)-islands
+
 
 t = Solution()
 print(t.removeStones([[0,0],[0,2],[1,1],[2,0],[2,2]]))
