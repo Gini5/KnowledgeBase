@@ -28,7 +28,24 @@ class Solution:
 
         return len(stones)-islands
 
+    def removeStoneUF(self, stones):
+        UF = {}
+
+        def find(x):
+            if x != UF[x]:
+                UF[x] = find(UF[x])
+            return UF[x]
+
+        def union(x, y):
+            UF.setdefault(x, x)
+            UF.setdefault(y, y)
+            UF[find(x)] = find(y)
+
+        for i, j in stones:
+            union(i, ~j)
+
+        return len(stones) - len({find(x) for x in UF})
 
 t = Solution()
-print(t.removeStones([[0,0],[0,2],[1,1],[2,0],[2,2]]))
-print(t.removeStones([[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]))
+# print(t.removeStoneUF([[0,0],[0,2],[1,1],[2,0],[2,2]]))
+print(t.removeStoneUF([[0,1],[1,0],[1,2],[2,1],[2,2]]))
