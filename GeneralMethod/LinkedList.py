@@ -7,13 +7,12 @@ def reverseList(self, head):
 
 def reverse(head):
     prev = None
-    current = head
 
-    while current:
-        nex = current.next
-        current.next = prev
-        prev = current
-        current = nex
+    while head:
+        nex = head.next
+        head.next = prev
+        prev = head
+        head = nex
     return prev
 
 
