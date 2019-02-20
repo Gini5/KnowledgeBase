@@ -1,6 +1,21 @@
 times = [1,4,6,8,10]
 t = 3
 
+#typical binary search, nums sorted, if doesn't exsit, return -1
+class Solution:
+    def search(self, nums: 'List[int]', target: 'int') -> 'int':
+        l,r = 0,len(nums)-1
+        while l<=r:
+            m = (l+r)//2
+            mid = nums[m]
+            if mid == target:
+                return m
+            elif mid<target:
+                l = m+1
+            else:
+                r = m-1
+        return -1
+
 # binary search, if not hit, return left element
 # means to find the first > t, so if mid<=t, ignore
 l,r = 0, len(times)
