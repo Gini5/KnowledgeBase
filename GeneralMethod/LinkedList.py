@@ -1,7 +1,7 @@
 def reverseList(self, head):
     prev = None
     while head:
-        prev, head, head.next = head, head.next, prev
+        head.next, prev, head = prev, head, head.next
     return prev
 
 
