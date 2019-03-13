@@ -1,8 +1,7 @@
 class Solution:
     def minDeletionSize(self, A):
         """
-        :type A: List[str]
-        :rtype: int
+        delete at least how many columns to make each column non-decreasing
         """
         if not A: return 0
         res = 0
