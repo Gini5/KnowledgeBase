@@ -1,26 +1,10 @@
 class Solution:
     def spellchecker(self, wordlist, queries):
         answer = ["" for _ in range(len(queries))]
-        original = {}
-        capital = {}
+        original = {w:w for w in wordlist}
+        capital = {w.lower():w for w in wordlist[::-1]}
         vowel = {}
         vocabs = {'a', 'e', 'i', 'o', 'u'}
-
-        for i, w in enumerate(wordlist):
-            if w not in original: original[w] = i
-            lower = w.lower()
-            if lower not in capital: capital[lower] = i
-            tmp = set([lower])
-            for index, char in enumerate(w):
-                if char in vocabs:
-                    for replace in vocabs:
-                        news = set()
-                        for word in tmp:
-                            print(word)
-                            new = word[:index] + replace + word[index + 1:]
-                            news.add(new)
-                            if new and new not in vowel: vowel[new] = i
-                        tmp = tmp | news
 
         for i, q in enumerate(queries):
             res = -1
