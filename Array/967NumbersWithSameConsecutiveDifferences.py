@@ -8,7 +8,6 @@ Note that every number in the answer must not have leading
 
 You may return the answer in any order.
 
- 
 Example 1:
 
 Input: N = 3, K = 7
@@ -18,7 +17,6 @@ Example 2:
 
 Input: N = 2, K = 1
 Output: [10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]
- 
 
 Note:
 
