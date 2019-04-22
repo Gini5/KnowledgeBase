@@ -34,8 +34,7 @@ class Solution:
             if arr[1].isdigit(): num.append(log)
             else:
                 let.append(log)
-        print(''.join(log.split(' ')[1:]+[log.split(' ')[0]]))
-        # let.sort(keyword=lambda log: str(log.split(' ')[1:]+[log.split(' ')[0]]))
+        let.sort(key=lambda log: log[log.find(" "):]+log[:log.find(" ")])
         return let + num
 
 t = Solution()
