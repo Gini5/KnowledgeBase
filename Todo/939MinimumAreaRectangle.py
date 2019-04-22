@@ -23,4 +23,5 @@ Note:
 All points are distinct.
 """
 class Solution:
-    def minAreaRect(self, points: List[List[int]]) -> int:
+    def minAreaRect(self, points):
+        
