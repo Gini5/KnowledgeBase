@@ -30,4 +30,24 @@ A[i] is a permutation of [1, 2, ..., A.length]
 """
 
 class Solution:
-    def pancakeSort(self, A: List[int]) -> List[int]:
+    def pancakeSort(self, A):
+        res = []
+
+        def sort(a):
+            exp = len(a)
+            if exp == 1: return
+            if a[-1] != exp:
+                expidx = a.index(exp)
+                if expidx != 0: 
+                    res.append(expidx+1)
+                    a = a[:expidx+1][::-1]+a[expidx+1:]
+                res.append(exp)
+                a.reverse()
+            sort(a[:-1])    
+        
+        sort(A)
+        return res
+
+t = Solution()
+print(t.pancakeSort([3,2,4,1]))
+        
