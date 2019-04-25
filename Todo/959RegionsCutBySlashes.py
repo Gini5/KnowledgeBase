@@ -12,5 +12,5 @@ In a N x N grid composed of 1 x 1 squares, each 1 x 1 square consists of a /, \,
 Return the number of regions.
 """
 class Solution:
-    def regionsBySlashes(self, grid: List[str]) -> int:
+    def regionsBySlashes(self, grid):
         
