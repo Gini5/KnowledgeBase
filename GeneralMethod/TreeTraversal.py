@@ -23,14 +23,21 @@ class Solution:
         :type root: TreeNode
         :rtype: List[int]
         """
-        res, stack = [], []
-        while root or stack:
-            while root:
-                res.append(root.val)
-                stack.append(root)
-                root = root.left
-            root = stack.pop()
-            root = root.right
+        # res, stack = [], []
+        # while root or stack:
+        #     while root:
+        #         res.append(root.val)
+        #         stack.append(root)
+        #         root = root.left
+        #     root = stack.pop()
+        #     root = root.right
+        # return res
+        res, stack = [], [root]
+        while stack:
+            n = stack.pop()
+            if n:
+                res.append(n.val)
+                stack += [child for child in (n.right,n.left)]
         return res
 
     def inorderTraversal(self,root):
@@ -45,17 +52,23 @@ class Solution:
         return res
 
     def postorderTraversal(self,root):
-        s1,s2 = [root], []
-        res = []
-        while s1:
-            node = s1.pop()
-            s2.append(node)
-            if node.left: s1.append(node.left)
-            if node.right: s1.append(node.right)
-        while s2:
-            node = s2.pop()
-            res.append(node.val)
-        return res
+        # s = []
+        # res = []
+        # while root or s:
+        #     while root:
+        #         res.append(root.val)
+        #         s.append(root)
+        #         root = root.right
+        #     root = s.pop()
+        #     root = root.left
+        # return res[::-1]
+        res, stack = [], [root]
+        while stack:
+            n = stack.pop()
+            if n:
+                res.append(n.val)
+                stack += [child for child in (n.left,n.right)]
+        return res[::-1]
 
     def levelorderTraversal(self,root):
         stack = [root]
