@@ -21,6 +21,18 @@ class Solution(object):
             buy = max(buy, profit-p)
         return profit
 
+    # two transactions
+    def maxProfitTwoTransactions(self,prices):
+        c1 = float('-inf')
+        c2 = float('-inf')
+        p1,p2 = 0,0
+        for p in prices:
+            p1 = max(p1,p+c1)
+            c1 = max(c1,-p)
+            p2 = max(p2,p+c2)
+            c2 = max(c2,p1-p)
+        return p2
+
     # With Transaction Fee for each pair
     def maxProfitWithFee(self, prices, fee):
         profit = 0
@@ -42,8 +54,7 @@ class Solution(object):
                 buy[i] = -prices[i]  # first day: set buy to first price
             elif i == 1:
                 profit[i] = max(profit[i - 1], prices[i] + buy[i - 1])  # compare to yesterday, decide sell or not
-                buy[i] = max(buy[i - 1],
-                             profit[i - 1] - prices[i])  # compare to yesterday's profit, decide buy new or not
+                buy[i] = max(buy[i - 1], -prices[i])  # compare to yesterday's profit, decide buy new or not
             else:
                 profit[i] = max(profit[i - 1], prices[i] + buy[i - 1])  # compare to yesterday, decide sell or not
                 buy[i] = max(buy[i - 1], profit[i - 2] - prices[
