@@ -107,15 +107,14 @@ class Solution:
         :type target: int
         :rtype: List[List[int]]
         """
-        candidates.sort()
         res = []
-        for i,n in enumerate(candidates):
-                if target == n:
-                    res.append([n])
-                    break
-                elif target > n:
-                    for sub in self.combinationSum2(candidates[:i],target-n):
-                        res.append([n]+sub)
-                else:
-                    break
+        candidates.sort()
+        for i, n in enumerate(candidates):
+            if n < target:
+                for sub in self.combinationSum(candidates[:i], target - n):
+                    res.append([n] + sub)
+            elif n == target:
+                res.append([n])
+            else:
+                break
         return res
